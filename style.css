@@ -5,28 +5,47 @@ body {
 }
 
 nav {
-    background: #111;
-    color: white;
+     background: linear-gradient(to right, #667eea, #764ba2);
+    color:white;
     padding: 15px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: solid 1.75px;
+    
 }
 
 nav ul {
     list-style: none;
     display: flex;
     gap: 20px;
+    
 }
 
 nav a {
     color: white;
     text-decoration: none;
+    justify-content: center;
+    
 }
+.logo {
+    color:white;
+    border:solid;
+    border-right:10px;
+    border-left:10px;
+    border-radius:7px;
+    padding:4px;
+
+}
+ul li a{
+    padding-left: 2px;
+    /* to insert the value */
+}
+
 
 .hero {
     text-align: center;
-    padding: 80px 20px;
+    padding: 70px 20px;
     background: linear-gradient(to right, #667eea, #764ba2);
     color: white;
 }
@@ -34,32 +53,66 @@ nav a {
 .hero span {
     color: yellow;
 }
+#dev { 
+    color: white;
+    border-bottom: solid 2px;
+    font-size:20px;
+}
 
 button {
-    padding: 10px 20px;
-    border: none;
-    background: black;
+    padding: 13px 25px;
+    border:solid;
+    background:none;
     color: white;
     cursor: pointer;
+    border-radius: 30px;
+    
 }
 
 section {
     padding: 40px;
 }
-
+.card img{
+    justify-content: center;
+    padding-right: 200px;
+}
+.text{
+    padding-left: 10px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-right: 10px;
+}
+.text2{
+    padding-left: 70px;
+}
+.text3{
+    padding-left: 20px;
+}
+.text4{
+    padding-left: 30px;
+}
 .cards {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
+    justify-content:center;
+
 }
 
 .card {
     background: white;
-    padding: 20px;
-    width: 200px;
+    padding: 140px;
+    width: 190px;
     text-align: center;
-    border-radius: 10px;
+    border-radius: 50px;
     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+.contact{
+    /* justify-content: center; */
+    text-align: center;
+    font-size: 17px;
+
+
 }
 
 footer {
