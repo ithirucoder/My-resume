@@ -41,74 +41,111 @@ ul li a{
     padding-left: 2px;
     /* to insert the value */
 }
-
-
-
-.hero {
+.Hero{
     text-align: center;
-    padding: 70px 20px;
-    background: linear-gradient(to right, #667eea, #764ba2);
-    color: white;
+    padding-top: 230px;
+    font-size:50px;
 }
+.page{
+    text-align: center;
+    padding-top: 29px;
+    font-size: 25px;
+    opacity: 50%;
 
-.hero span {
-    color: yellow;
 }
-#dev { 
-    color: white;
-    border-bottom: solid 2px;
-    font-size:20px;
-}
-
-button {
-    padding: 13px 25px;
-    border:solid;
-    background:none;
-    color: white;
-    cursor: pointer;
-    border-radius: 30px;
-    
+#dev{
+text-decoration: dotted;    
 }
 
 section {
     padding: 40px;
 }
-.card img{
-    justify-content: center;
-    padding: 10px 10px 10px 10px;
-    margin: 1px 1px 100px 1px;
-    /* right: 600px; */
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f6f8fb;
 }
-.text, .text2, .text3, .text4 .card img{
-    padding:10px 60px 150px 50px;
-}/*
-.text2{
-    padding-left: 55px;
-    padding-right: 50px;
+
+/* Navbar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 40px;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
-.text3{
-    padding-left: 20px;
-}
-.text4{
-    padding-left: 10px;
-}*/
-.cards {
+
+.list-center {
     display: flex;
     gap: 20px;
-    flex-wrap: wrap;
-    justify-content:center;
-
+    list-style: none;
 }
 
-.card {
-    background: white;
-    padding: 150px;
-    width: 100px;
-    height: 150px;
+.list-center a {
+    text-decoration: none;
+    color: black;
+}
+
+/* Skills section */
+#skills {
     text-align: center;
-    border-radius: 50px;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    padding: 60px 20px;
 }
+
+/* Cards layout */
+.cards {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+.card{
+    width: 160px;
+    padding: 30px;
+    background: white;
+    border-radius: 20px;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: 0.3s;
+    
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    background-color: orange;
+    color: white;
+}
+
+.link-color{
+    color: black;
+    text-decoration: none;
+    font-size: 20px;
+}
+.dev:hover{
+    color:purple;
+}
+.animation{
+    /* width: 100px; */
+    /* height: 100px; */
+    color: #764ba2;
+    animation-name: myAnimation;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    
+}
+@keyframes myAnimation {
+    FORM {color: #764ba2;}
+    to {color: aqua;}
+}
+
+.dev{
+    animation-name: myAnimation;
+    animation: duration 2s;
+    animation-iteration-count: infinite;
+}
+
 .contact{
     /* justify-content: center; */
     text-align: center;
@@ -116,7 +153,43 @@ section {
 
 
 }
+.button1{
+    margin-left: 640px;
+    margin-top: 44px;
+    padding: 10px 10px;
+    border-radius: 20px;
+    color:black;
+    text-align: center;
 
+}
+.button2{
+    padding: 10px 10px;
+    margin-left: 10px;
+    border-radius: 20px;
+    color:black;
+    text-align: center;
+}
+.button3{
+    padding: 10px 10px;
+    margin-top: 22px;
+    margin-left: 703px;
+    border-radius: 20px;
+    text-align: center;
+
+}
+
+.button2:hover{
+    background: linear-gradient(to right, #667eea, #764ba2);
+    color: white;
+}
+.button1:hover{
+    background: linear-gradient(to right, #667eea, #764ba2);
+    color: white;
+}
+.button3:hover{
+    background: linear-gradient(to right, #667eea, #764ba2);
+    color: white;
+}
 footer {
     text-align: center;
     background: #111;
