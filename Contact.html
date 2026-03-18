@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Contact | Thirushan</title>
+    <title>Contact - Thirushan B</title>
     <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -20,53 +20,173 @@
         </ul>
     </nav>
 
-
 <!-- CONTACT SECTION -->
-<section class="contact-container">
-
-    <!-- LEFT INFO -->
-    <div class="contact-info">
-        <h1>Let's Work Together 🤝</h1>
-        <p>
-            I'm open to internships, freelance work and full-time roles.
-            Feel free to contact me anytime!
-        </p>
-
-        <div class="info-item">
-            📧 yourmail@gmail.com
-        </div>
-
-        <div class="info-item">
-            📱 +91 XXXXX XXXXX
-        </div>
-
-        <div class="info-item">
-            📍 Chennai, India
-        </div>
+<section class="contact-section">
+    <div class="contact-header">
+        <h1 class="contact-title">Get In Touch</h1>
+        <p class="contact-subtitle">Let's create something amazing together</p>
     </div>
 
+    <div class="contact-container">
+        <!-- LEFT INFO -->
+        <div class="contact-info">
+            <div class="info-card">
+                <h2>Let's Work Together 🤝</h2>
+                <p class="info-description">
+                    I'm passionate about creating exceptional web experiences and always excited to take on new challenges. Whether you have a project in mind or just want to connect, I'd love to hear from you!
+                </p>
 
-    <!-- RIGHT FORM -->
-    <form class="contact-form">
+                <div class="contact-methods">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <span class="icon">📧</span>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p>thirushan@example.com</p>
+                        </div>
+                    </div>
 
-        <input type="text" placeholder="Your Name" required />
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <span class="icon">📱</span>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Phone</h3>
+                            <p>+91 XXXXX XXXXX</p>
+                        </div>
+                    </div>
 
-        <input type="email" placeholder="Your Email" required />
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <span class="icon">📍</span>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Location</h3>
+                            <p>Chennai, India</p>
+                        </div>
+                    </div>
+                </div>
 
-        <input type="text" placeholder="Subject" />
+                <div class="social-links">
+                    <h3>Connect With Me</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-link" aria-label="GitHub">
+                            <span class="social-icon">🐙</span>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <span class="social-icon">💼</span>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <span class="social-icon">🐦</span>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Portfolio">
+                            <span class="social-icon">🌐</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <textarea rows="5" placeholder="Your Message"></textarea>
+        <!-- RIGHT FORM -->
+        <div class="form-wrapper">
+            <form class="contact-form">
+                <div class="form-header">
+                    <h3>Send Me a Message</h3>
+                    <p>I'll get back to you as soon as possible</p>
+                </div>
 
-        <button type="submit">Send Message</button>
+                <div class="form-group">
+                    <input type="text" id="name" name="name" placeholder="Your Name" required />
+                    <label for="name" class="form-label">Name</label>
+                </div>
 
-    </form>
+                <div class="form-group">
+                    <input type="email" id="email" name="email" placeholder="your.email@example.com" required />
+                    <label for="email" class="form-label">Email</label>
+                </div>
 
+                <div class="form-group">
+                    <input type="text" id="subject" name="subject" placeholder="Project Discussion" />
+                    <label for="subject" class="form-label">Subject</label>
+                </div>
+
+                <div class="form-group">
+                    <textarea id="message" name="message" rows="5" placeholder="Tell me about your project or just say hello..." required></textarea>
+                    <label for="message" class="form-label">Message</label>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <span class="btn-text">Send Message</span>
+                    <span class="btn-icon">🚀</span>
+                </button>
+            </form>
+        </div>
+    </div>
 </section>
 
-
 <footer>
-    © 2026 Thirushan. All rights reserved.
+    <p>&copy; 2024 Thirushan B. All rights reserved.</p>
 </footer>
+
+<script>
+    // Form submission handler
+    document.querySelector('.contact-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form data
+        const formData = new FormData(this);
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const subject = formData.get('subject');
+        const message = formData.get('message');
+        
+        // Simple validation
+        if (!name || !email || !message) {
+            showNotification('Please fill in all required fields', 'error');
+            return;
+        }
+        
+        // Show success message
+        showNotification(`Thank you ${name}! Your message has been sent successfully.`, 'success');
+        
+        // Reset form
+        this.reset();
+    });
+    
+    function showNotification(message, type) {
+        // Create notification element
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        notification.textContent = message;
+        
+        // Add to page
+        document.body.appendChild(notification);
+        
+        // Remove after 3 seconds
+        setTimeout(() => {
+            notification.remove();
+        }, 3000);
+    }
+    
+    // Floating labels effect
+    document.querySelectorAll('.form-group input, .form-group textarea').forEach(field => {
+        field.addEventListener('focus', function() {
+            this.parentElement.classList.add('focused');
+        });
+        
+        field.addEventListener('blur', function() {
+            if (!this.value) {
+                this.parentElement.classList.remove('focused');
+            }
+        });
+        
+        // Check on load
+        if (field.value) {
+            this.parentElement.classList.add('focused');
+        }
+    });
+</script>
 
 </body>
 </html>
