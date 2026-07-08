@@ -264,7 +264,7 @@ class Jarvis {
             this.stopListening();
         }
         else if (command.includes('hello') || command.includes('hi')) {
-            this.speak('Hello Thirushan, how can I assist you today?');
+            this.speak('Hello Thirushan, how can I assist you?');
         }
         else if (command.includes('who are you') || command.includes('what are you')) {
             this.speak('I am Jarvis, your voice assistant. I can help you navigate this portfolio website using voice commands.');

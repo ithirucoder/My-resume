@@ -1398,6 +1398,128 @@ footer {
     }
 }
 
+/* ===== SKILLS SECTION - HORIZONTAL MARQUEE ===== */
+.skills-section {
+    padding: 120px 2rem 4rem;
+    min-height: 100vh;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+}
+
+.skills-marquee-container {
+    overflow: hidden;
+    position: relative;
+    padding: 3rem 0;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    box-shadow: var(--shadow-md);
+}
+
+.skills-marquee {
+    display: flex;
+    gap: 3rem;
+    animation: scroll 30s linear infinite;
+    padding: 0 1rem;
+}
+
+.skills-marquee-container:hover .skills-marquee {
+    animation-play-state: paused;
+}
+
+.skill-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 150px;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.skill-item:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: var(--shadow-lg);
+}
+
+.skill-icon {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    transition: var(--transition);
+}
+
+.skill-item:hover .skill-icon {
+    transform: scale(1.2);
+}
+
+.skill-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    text-align: center;
+    white-space: nowrap;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* ===== RESPONSIVE SKILLS MARQUEE ===== */
+@media (max-width: 768px) {
+    .skills-section {
+        padding: 100px 1rem 2rem;
+    }
+    
+    .skills-marquee-container {
+        padding: 2rem 0;
+    }
+    
+    .skills-marquee {
+        gap: 2rem;
+        animation: scroll 20s linear infinite;
+    }
+    
+    .skill-item {
+        min-width: 120px;
+        padding: 1rem;
+    }
+    
+    .skill-icon {
+        font-size: 2.5rem;
+    }
+    
+    .skill-name {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .skills-marquee {
+        gap: 1.5rem;
+        animation: scroll 15s linear infinite;
+    }
+    
+    .skill-item {
+        min-width: 100px;
+        padding: 0.8rem;
+    }
+    
+    .skill-icon {
+        font-size: 2rem;
+    }
+    
+    .skill-name {
+        font-size: 0.8rem;
+    }
+}
+
 /* ===== RESPONSIVE CONTACT ===== */
 @media (max-width: 768px) {
     .contact-section {
