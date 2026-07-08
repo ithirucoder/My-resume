@@ -159,10 +159,12 @@ class Jarvis {
     toggleListening() {
         console.log('Jarvis: Toggle listening');
         if (this.listening) {
+            this.isActive = false;
             this.stopListening();
-            this.isActive = false;
+            this.speak('Jarvis deactivated');
         } else {
-            this.isActive = false;
+            this.isActive = true;
+            this.speak('Jarvis activated. I\'m listening for your commands.');
             this.startListening();
         }
     }
@@ -205,7 +207,7 @@ class Jarvis {
     processCommand(command) {
         console.log('Jarvis: Processing command:', command, 'Active:', this.isActive);
         
-        // Check for wake word
+        // Check for wake word (optional - can still use if desired)
         if (command.includes(this.wakeWord)) {
             if (!this.isActive) {
                 this.isActive = true;
@@ -217,7 +219,7 @@ class Jarvis {
             return;
         }
 
-        // Only process commands if Jarvis is active (wake word was spoken)
+        // Only process commands if Jarvis is active
         if (!this.isActive) {
             console.log('Jarvis: Not active, ignoring command');
             return;
@@ -226,50 +228,34 @@ class Jarvis {
         // Portfolio navigation commands
         if (command.includes('home') || command.includes('about')) {
             this.speak('Navigating to home');
-            this.isActive = false;
-            this.stopListening();
             setTimeout(() => window.location.href = 'index.html', 1000);
         }
         else if (command.includes('skill') || command.includes('skills')) {
             this.speak('Opening skills section');
-            this.isActive = false;
-            this.stopListening();
             setTimeout(() => window.location.href = 'skills.html', 1000);
         }
         else if (command.includes('project') || command.includes('projects')) {
             this.speak('Showing my projects');
-            this.isActive = false;
-            this.stopListening();
             setTimeout(() => window.location.href = 'projects.html', 1000);
         }
         else if (command.includes('contact')) {
             this.speak('Opening contact page');
-            this.isActive = false;
-            this.stopListening();
             setTimeout(() => window.location.href = 'Contact.html', 1000);
         }
         else if (command.includes('agrocart') || command.includes('agro')) {
             this.speak('Opening AgroCart project');
-            this.isActive = false;
-            this.stopListening();
             setTimeout(() => window.location.href = '../../AGROCART/Mini-project/frontend/index.html', 1000);
         }
         else if (command.includes('music')) {
             this.speak('Opening Music project');
-            this.isActive = false;
-            this.stopListening();
             setTimeout(() => window.location.href = '../../Music/project/index.html', 1000);
         }
         else if (command.includes('portfolio')) {
             this.speak('Opening Portfolio 2.0');
-            this.isActive = false;
-            this.stopListening();
             setTimeout(() => window.location.href = '../../Portfolio 2.0/My-resume-2.0/index.html', 1000);
         }
         else if (command.includes('doctor') || command.includes('health')) {
             this.speak('Opening Doctors Portal');
-            this.isActive = false;
-            this.stopListening();
             setTimeout(() => window.location.href = '../../Doctors/index.html', 1000);
         }
         else if (command.includes('stop') || command.includes('deactivate')) {
@@ -291,15 +277,16 @@ class Jarvis {
             // Don't speak for unknown commands to avoid confusion
         }
 
-        // Auto-deactivate after 15 seconds of inactivity
-        clearTimeout(this.deactivateTimer);
-        this.deactivateTimer = setTimeout(() => {
-            if (this.isActive) {
-                this.isActive = false;
-                this.stopListening();
-                console.log('Jarvis: Auto-deactivated due to inactivity');
-            }
-        }, 15000);
+        // Reset inactivity timer (optional - comment out if you want no timeout)
+        // clearTimeout(this.deactivateTimer);
+        // this.deactivateTimer = setTimeout(() => {
+        //     if (this.isActive) {
+        //         this.isActive = false;
+        //         this.stopListening();
+        //         this.speak('Jarvis deactivated due to inactivity');
+        //         console.log('Jarvis: Auto-deactivated due to inactivity');
+        //     }
+        // }, 60000); // 60 seconds instead of 15
     }
 
     updateUI(isListening) {

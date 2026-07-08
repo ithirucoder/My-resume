@@ -11,20 +11,39 @@
 
     <!-- Navbar -->
     <nav>
-        <h2 class="logo">THIRUSHAN.B</h2>
-        <ul class="list-center">
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="list-center" id="nav-menu">
             <li><a href="index.html">About</a></li>
             <li><a href="skills.html">Skills</a></li>
             <li><a href="projects.html">Projects</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="Contact.html">Contact</a></li>
         </ul>
     </nav>
 
-    <!-- Jarvis Voice Assistant Button -->
-    <button id="jarvis-button" aria-label="Activate Jarvis Voice Assistant">🤖</button>
-
-    <!-- Jarvis Script -->
-    <script src="jarvis.js"></script>
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+            
+            // Close menu when clicking a link
+            navMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                    hamburger.classList.remove('active');
+                });
+            });
+        }
+    </script>
 
     <!-- Skills Section -->
     <section id="skills" class="projects-section">
@@ -227,6 +246,12 @@
             </div>
         </div>
     </section>
+
+    <!-- Jarvis Voice Assistant Button -->
+    <button id="jarvis-button" aria-label="Activate Jarvis Voice Assistant">🤖</button>
+
+    <!-- Jarvis Script -->
+    <script src="jarvis.js"></script>
 
 </body>
 </html>

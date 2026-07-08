@@ -1,32 +1,54 @@
-k<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thirushan | Resume</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="Contact.html">
 </head>
 <body>
 
     <nav>
-        
-        <h2 class="logo">THIRUSHAN.B</h2>
-        
-        <ul class="list-center">
-            <li><a href="#about"><a href="index.html">About</a></a></li>
-            <li><a href="#skills"><a href="skills.html">Skills</a></a></li>
-            <li><a href="#projects"><a href="projects.html">Projects</a></a></li>
-            <li><a href="#contact"><a href="Contact.html">Contact</a></a></li>
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="list-center" id="nav-menu">
+            <li><a href="index.html">About</a></li>
+            <li><a href="skills.html">Skills</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="Contact.html">Contact</a></li>
         </ul>
     </nav>
 
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+            
+            // Close menu when clicking a link
+            navMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                    hamburger.classList.remove('active');
+                });
+            });
+        }
+    </script>
+
         <div class="animation"><h1 class="Hero">Hello, I'm <span>Thirushan</span></h1></div>
-        <p class="page">Aspiring Web <span classko="dev">Developer</span></p>
+        <p class="page">Aspiring Web <span class="dev">Developer</span></p>
        <div class="hero-buttons">
-           <a href="Contact.html"><span><button class="button1">Let's Connectko</button></span></a>
-           <span><button class="button2"><a href="projects.html"><span class="rr">View My Projects</span></a></button></span>
-           <span><button class="button3">CV Download</button></span>
+           <a href="Contact.html"><button class="button1">Let's Connect</button></a>
+           <a href="projects.html"><button class="button2">View My Projects</button></a>
+           <button class="button3" onclick="window.open('resume.pdf', '_blank')">CV Download</button>
        </div>
 
     <!-- Jarvis Voice Assistant Button -->
@@ -34,3 +56,6 @@ k<!DOCTYPE html>
 
     <!-- Jarvis Script -->
     <script src="jarvis.js"></script>
+
+</body>
+</html>

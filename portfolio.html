@@ -4,18 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Portfolio - Thirushan B</title>
 </head>
 <body>
-       <nav>
-        <h2 class="logo">THIRUSHAN.B</h2>
-        <ul class="list-center">
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills"><a href="skills.html">Skills</a></a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact"><a href="Contact.html">Contact</a></a></li>
+    <nav>
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="list-center" id="nav-menu">
+            <li><a href="index.html">About</a></li>
+            <li><a href="skills.html">Skills</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="Contact.html">Contact</a></li>
         </ul>
     </nav>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+            
+            // Close menu when clicking a link
+            navMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                    hamburger.classList.remove('active');
+                });
+            });
+        }
+    </script>
+
+    <section class="contact-section">
+        <div class="contact-header">
+            <h1 class="contact-title">Portfolio</h1>
+            <p class="contact-subtitle">This page is under construction. Please visit the Projects page.</p>
+        </div>
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="projects.html" class="button1">Go to Projects</a>
+        </div>
+    </section>
+
+    <!-- Jarvis Voice Assistant Button -->
+    <button id="jarvis-button" aria-label="Activate Jarvis Voice Assistant">🤖</button>
+
+    <!-- Jarvis Script -->
+    <script src="jarvis.js"></script>
 
 </body>
 </html>

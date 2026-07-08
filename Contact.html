@@ -5,20 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Contact - Thirushan B</title>
     <link rel="stylesheet" href="style.css" />
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
 
 <body>
 
 <!-- NAVBAR -->
  <nav>
-        <h2 class="logo">THIRUSHAN.B</h2>
-        <ul class="list-center">
-            <li><a href="#about"><a href="index.html">About</a></a></li>
-            <li><a href="#skills"><a href="skills.html">Skills</a></a></li>
-            <li><a href="#projects"><a href="projects.html">Projects</a></a></li>
-            <li><a href="#contact"><a href="Contact.html">Contact</a></a></li>
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="list-center" id="nav-menu">
+            <li><a href="index.html">About</a></li>
+            <li><a href="skills.html">Skills</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="Contact.html">Contact</a></li>
         </ul>
     </nav>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+            
+            // Close menu when clicking a link
+            navMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                    hamburger.classList.remove('active');
+                });
+            });
+        }
+    </script>
 
 <!-- CONTACT SECTION -->
 <section class="contact-section">
@@ -43,7 +69,7 @@
                         </div>
                         <div class="contact-details">
                             <h3>Email</h3>
-                            <p>thirushan@example.com</p>
+                            <p>ithirucoder@gmail.com</p>
                         </div>
                     </div>
 
@@ -130,43 +156,120 @@
 </footer>
 
 <script>
+    // Initialize EmailJS
+    (function() {
+        emailjs.init("YOUR_EMAILJS_PUBLIC_KEY");
+    })();
+
     // Form submission handler
     document.querySelector('.contact-form').addEventListener('submit', function(e) {
         e.preventDefault();
         
+        const submitBtn = this.querySelector('.submit-btn');
+        const btnText = submitBtn.querySelector('.btn-text');
+        const btnIcon = submitBtn.querySelector('.btn-icon');
+        
         // Get form data
         const formData = new FormData(this);
-        const name = formData.get('name');
-        const email = formData.get('email');
-        const subject = formData.get('subject');
-        const message = formData.get('message');
+        const name = formData.get('name').trim();
+        const email = formData.get('email').trim();
+        const subject = formData.get('subject').trim();
+        const message = formData.get('message').trim();
         
-        // Simple validation
-        if (!name || !email || !message) {
-            showNotification('Please fill in all required fields', 'error');
+        // Comprehensive validation
+        if (!name) {
+            showNotification('Please enter your name', 'error');
+            document.getElementById('name').focus();
             return;
         }
         
-        // Show success message
-        showNotification(`Thank you ${name}! Your message has been sent successfully.`, 'success');
+        if (name.length < 2) {
+            showNotification('Name must be at least 2 characters', 'error');
+            document.getElementById('name').focus();
+            return;
+        }
         
-        // Reset form
-        this.reset();
+        if (!email) {
+            showNotification('Please enter your email', 'error');
+            document.getElementById('email').focus();
+            return;
+        }
+        
+        // Email validation regex
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            showNotification('Please enter a valid email address', 'error');
+            document.getElementById('email').focus();
+            return;
+        }
+        
+        if (!message) {
+            showNotification('Please enter your message', 'error');
+            document.getElementById('message').focus();
+            return;
+        }
+        
+        if (message.length < 10) {
+            showNotification('Message must be at least 10 characters', 'error');
+            document.getElementById('message').focus();
+            return;
+        }
+        
+        // Disable button and show loading state
+        submitBtn.disabled = true;
+        btnText.textContent = 'Sending...';
+        btnIcon.textContent = '⏳';
+        
+        // Prepare email parameters
+        const templateParams = {
+            from_name: name,
+            from_email: email,
+            subject: subject || 'No Subject',
+            message: message,
+            to_email: 'ithirucoder@gmail.com'
+        };
+        
+        // Send email using EmailJS
+        emailjs.send('YOUR_EMAILJS_SERVICE_ID', 'YOUR_EMAILJS_TEMPLATE_ID', templateParams)
+            .then(function(response) {
+                console.log('SUCCESS!', response.status, response.text);
+                showNotification(`Thank you ${name}! Your message has been sent successfully.`, 'success');
+                document.querySelector('.contact-form').reset();
+            }, function(error) {
+                console.log('FAILED...', error);
+                showNotification('Failed to send message. Please try again or contact me directly at ithirucoder@gmail.com', 'error');
+            })
+            .finally(function() {
+                // Re-enable button
+                submitBtn.disabled = false;
+                btnText.textContent = 'Send Message';
+                btnIcon.textContent = '🚀';
+            });
     });
     
     function showNotification(message, type) {
+        // Remove existing notifications
+        const existingNotifications = document.querySelectorAll('.notification');
+        existingNotifications.forEach(n => n.remove());
+        
         // Create notification element
         const notification = document.createElement('div');
         notification.className = `notification ${type}`;
-        notification.textContent = message;
+        notification.innerHTML = `
+            <span class="notification-icon">${type === 'success' ? '✅' : '❌'}</span>
+            <span class="notification-message">${message}</span>
+            <button class="notification-close" onclick="this.parentElement.remove()">×</button>
+        `;
         
         // Add to page
         document.body.appendChild(notification);
         
-        // Remove after 3 seconds
+        // Auto-remove after 5 seconds
         setTimeout(() => {
-            notification.remove();
-        }, 3000);
+            if (notification.parentElement) {
+                notification.remove();
+            }
+        }, 5000);
     }
     
     // Floating labels effect
